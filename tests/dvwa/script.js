@@ -1,14 +1,27 @@
-const LOGIN_URL = 'http://localhost/login.php';
-const DELIMITER_CHAR = '[[<=>]]';
 const utils = require('../../utils.js');
 const fs = require('fs');
-
 let chrome = require('../../chrome.js');
+const chalk = require('chalk');
+
+const DVWA_URL = process.env.DVWA_URL;
+
+const LOGIN_URL = `${DVWA_URL}/login.php`;
 
 async function testAll() {
     let testData = JSON.parse(fs.readFileSync(__dirname + '/test.json').toString());
+    const outputPath = __dirname + '/outputs/';
+
+    // Create output folder if not exist
+    if (!fs.existsSync(outputPath)) {
+        fs.mkdirSync(outputPath);
+    }
+
+    // Remove files if exist
+    utils.removeFilesInFolder(outputPath);
+
     for (let item of testData) {
-        await test(item);
+        // TODO: Add performed time to output folder, each perform in one folder
+        await test(item, outputPath);
     }
 }
 
@@ -16,11 +29,14 @@ async function testAll() {
  *
  * @param {{url, payloadFile: {attack, normal}, attackType, testLocation: {selector, submit}, constValues: Array<{selector,value}> }} options
  */
-async function test(options) {
+async function test(options, outputPath) {
     console.log(`----------- [${options.attackType}] Begin of attack test cases -----------`);
     let fileLocation = require.resolve(options.payloadFile.attack);
     let payloads = utils.readTxtFile(fileLocation);
-    let outputFileName = __dirname + `/outputs/${options.attackType} output.csv`;
+
+    const filename = 'output.csv';
+
+    let outputFileName = `${outputPath}${options.attackType}-${filename}`;
 
     for (let payload of payloads) {
         console.log("Testing", payload);
@@ -30,7 +46,7 @@ async function test(options) {
             await chrome.clearSiteData();
             await login();
             await setSecurityLevel("low");
-            await chrome.goTo(options.url);
+            await chrome.goTo(DVWA_URL + options.url);
 
             let formInput = [
                 {
@@ -42,24 +58,39 @@ async function test(options) {
                 payload: item.value
             })));
 
+            let header = '';
+
+            page.on("response", response => {
+                header = response.headers();
+            });
             await chrome.submit(formInput, options.testLocation.submit);
 
-            await page.waitForNavigation({ waitUntil: 'load' });
+            await page.waitForNavigation({waitUntil: 'load'});
 
-            if (await chrome.isBlocked()) {
-                console.log("Fail to bypass firewall");
-                isBlocked = true;
-            }
-            else {
-                console.log("Bypass firewall success");
-            }
-
-            utils.appendResult(payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', {
-                fileName: outputFileName,
-                delim: DELIMITER_CHAR
+            let pageHtml = await page.evaluate(() => {
+                return document.body.innerHTML;
             });
-        }
-        catch (err) {
+
+            let score = {};
+            if (header) {
+                Object.keys(header).forEach(h => {
+                    if (h.startsWith('x-rule') || h.startsWith('x-polaris-requestid')) {
+                        score[h] = header[h];
+                    }
+                })
+            }
+
+            if (isBlockedByFirewall(pageHtml)) {
+                console.log(chalk.green("=> ✓ ✓ ✓ Blocked by firewall\n"));
+                isBlocked = true;
+            } else {
+                console.log(chalk.red("=> X X X Bypass firewall success\n"));
+            }
+
+            utils.appendResult(options.url, payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', score, {
+                fileName: outputFileName
+            });
+        } catch (err) {
             console.error(err);
         }
     }
@@ -78,7 +109,7 @@ async function test(options) {
         try {
             await chrome.clearSiteData();
             await login();
-            await chrome.goTo(options.url);
+            await chrome.goTo(DVWA_URL + options.url);
 
             let formInput = [
                 {
@@ -90,21 +121,40 @@ async function test(options) {
                 payload: item.value
             })));
 
+            let score = [];
+            let header = '';
+
+            page.on("response", response => {
+                header = response.headers();
+            });
+
             await chrome.submit(formInput, options.testLocation.submit);
 
-            await page.waitForNavigation({ waitUntil: 'load' });
+            await page.waitForNavigation({waitUntil: 'load'});
 
-            if (await chrome.isBlocked()) {
-                console.log("Why firewall block me!");
-                isBlocked = true;
+            let pageHtml = await page.evaluate(() => {
+                return document.body.innerHTML;
+            });
+
+            if (header) {
+                Object.keys(header).forEach(h => {
+                    if (h.startsWith('x-rule') || h.startsWith('x-polaris-requestid')) {
+                        score[h] = header[h];
+                    }
+                })
             }
 
-            utils.appendResult(payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', {
-                fileName: outputFileName,
-                delim: DELIMITER_CHAR
+            if (isBlockedByFirewall(pageHtml)) {
+                console.log(chalk.red("=> X X X False Positive\n"));
+                isBlocked = true;
+            } else {
+                console.log(chalk.green("=> ✓ ✓ ✓ True Positive\n"));
+            }
+
+            utils.appendResult(options.url, payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', score, {
+                fileName: outputFileName
             });
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
         }
     }
@@ -132,11 +182,15 @@ async function login(username = 'admin', password = 'password') {
     await chrome.goTo(LOGIN_URL);
 
     await chrome.submit([
-        { selector: '.loginInput[type=text]', payload: username },
-        { selector: '.loginInput[type=password]', payload: password }
+        {selector: '.loginInput[type=text]', payload: username},
+        {selector: '.loginInput[type=password]', payload: password}
     ], '.submit > input');
 
-    await page.waitForNavigation({ waitUntil: 'load' });
+    await page.waitForNavigation({waitUntil: 'load'});
+}
+
+function isBlockedByFirewall(html) {
+    return html.indexOf(process.env.BLOCK_STRING) >= 0;
 }
 
 module.exports = {

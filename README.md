@@ -13,12 +13,17 @@ Install required packages
 yarn
 ```
 
-### Running all tests
+Create environment file
 ```
-node runtest.js
+cp .env.example .env
 ```
 
-After running tests, you can get output at ./tests/dvwa/outputs/ folder
+### Running all tests
+```
+yarn start
+```
+
+After running tests, you can get output at `./tests/dvwa/outputs/` folder
 
 ### Running tests interactive
 Running in RELP console
@@ -54,13 +59,6 @@ You can add more testcases under folder ./tests/dvwa/payloads/
 │       ├── script.js
 │       └── test.json
 ...
-```
-
-### Notes
-- When import testing results (*.csv files), we should configure delimiter as `[[<=>]]`
-- You can change delimiter settings in ./tests/dvwa/script.js:2
-```js
-const DELIMITER_CHAR = '[[<=>]]';
 ```
 
 ## Built With

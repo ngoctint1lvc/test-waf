@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer');
+const isHeadless = process.env.HEADLESS === "true";
 
 async function openBrowser() {
-    global.browser = await puppeteer.launch({ headless: false });
+    console.log(`Running test with headless is ${isHeadless ? 'on' : 'off'}`);
+    global.browser = await puppeteer.launch({ headless: isHeadless });
     global.page = await browser.newPage();
 
     page.on('dialog', async dialog => {
@@ -32,7 +34,7 @@ async function isBlocked() {
         return document.body.innerHTML;
     });
 
-    return pageHtml.indexOf("403 Forbidden") >= 0;
+    return pageHtml.indexOf(process.env.BLOCK_STRING) >= 0;
 }
 
 async function clearSiteData() {

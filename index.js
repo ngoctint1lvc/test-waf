@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // Overwrite global function
 var consoleError = console.error;
 console.error = (...args) => {
@@ -6,6 +8,7 @@ console.error = (...args) => {
     console.log('-------- End of error ---------');
 }
 
+// using to reload after change without restart chrome browser (using in REPL console)
 function reload() {
     delete require.cache[require.resolve('./chrome.js')];
     delete require.cache[require.resolve('./tests/dvwa/script.js')];

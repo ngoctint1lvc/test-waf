@@ -1,6 +1,6 @@
 [
     {
-        "url": "http://localhost/vulnerabilities/exec/",
+        "url": "/vulnerabilities/exec/",
         "payloadFile": {
             "attack": "./payloads/cmdi-attack.txt",
             "normal": "./payloads/cmdi-normal.txt"
@@ -13,7 +13,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/sqli/",
+        "url": "/vulnerabilities/sqli/",
         "payloadFile": {
             "attack": "./payloads/sqli-attack.txt",
             "normal": "./payloads/sqli-normal.txt"
@@ -26,7 +26,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/sqli_blind/",
+        "url": "/vulnerabilities/sqli_blind/",
         "payloadFile": {
             "attack": "./payloads/sqli-attack.txt",
             "normal": "./payloads/sqli-normal.txt"
@@ -39,7 +39,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_r/",
+        "url": "/vulnerabilities/xss_r/",
         "payloadFile": {
             "attack": "./payloads/xss-attack.txt",
             "normal": "./payloads/xss-normal.txt"
@@ -52,7 +52,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_s/",
+        "url": "/vulnerabilities/xss_s/",
         "payloadFile": {
             "attack": "./payloads/xss-attack.txt",
             "normal": "./payloads/xss-normal.txt"
@@ -70,7 +70,7 @@
         ]
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_s/",
+        "url": "/vulnerabilities/xss_s/",
         "payloadFile": {
             "attack": "./payloads/xss-attack.txt",
             "normal": "./payloads/xss-normal.txt"
@@ -88,7 +88,7 @@
         ]
     },
     {
-        "url": "http://localhost/vulnerabilities/sqli/",
+        "url": "/vulnerabilities/sqli/",
         "payloadFile": {
             "attack": "./payloads/sqli-attack-generic.txt",
             "normal": ""
@@ -101,7 +101,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/sqli_blind/",
+        "url": "/vulnerabilities/sqli_blind/",
         "payloadFile": {
             "attack": "./payloads/sqli-attack-generic.txt",
             "normal": ""
@@ -114,7 +114,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_r/",
+        "url": "/vulnerabilities/xss_r/",
         "payloadFile": {
             "attack": "./payloads/xss-attack-generic.txt",
             "normal": ""
@@ -127,7 +127,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_s/",
+        "url": "/vulnerabilities/xss_s/",
         "payloadFile": {
             "attack": "./payloads/xss-attack-generic.txt",
             "normal": ""
@@ -145,7 +145,7 @@
         ]
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_s/",
+        "url": "/vulnerabilities/xss_s/",
         "payloadFile": {
             "attack": "./payloads/xss-attack-generic.txt",
             "normal": ""
@@ -163,7 +163,7 @@
         ]
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_r/",
+        "url": "/vulnerabilities/xss_r/",
         "payloadFile": {
             "attack": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
             "normal": ""
@@ -176,7 +176,7 @@
         "constValues": []
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_s/",
+        "url": "/vulnerabilities/xss_s/",
         "payloadFile": {
             "attack": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
             "normal": ""
@@ -194,7 +194,7 @@
         ]
     },
     {
-        "url": "http://localhost/vulnerabilities/xss_s/",
+        "url": "/vulnerabilities/xss_s/",
         "payloadFile": {
             "attack": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
             "normal": ""

