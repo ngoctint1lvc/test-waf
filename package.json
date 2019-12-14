@@ -1,8 +1,8 @@
 {
-  "name": "polaris-test-firewall",
+  "name": "test-waf",
   "version": "1.0.0",
   "description": "Auto test firewall",
-  "main": "index.js",
+  "main": "runtest.js",
   "scripts": {
     "start": "node runtest.js"
   },

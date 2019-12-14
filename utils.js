@@ -29,26 +29,14 @@ function* readTxtFile(fileName) {
  * @param {*} result
  * @param {{fileName: String}} options
  */
-function appendResult(url, payload, expect, result, score = {}, options) {
+function appendResult(url, payload, expect, result, options) {
     let fileName = options.fileName;
 
     const header = [
         {id: 'url', title: 'URL'},
         {id: 'payload', title: 'Payload'},
         {id: 'expect', title: 'Expect'},
-        {id: 'result', title: 'Result'},
-        {id: 'x-rule-tag-scores', title: 'tag-scores'},
-        {id: 'x-rule-sqli-waf-scores', title: 'sqli-waf-scores'},
-        {id: 'x-rule-sqli-result', title: 'sqli-result'},
-        {id: 'x-rule-xss-waf-scores', title: 'xss-waf-scores'},
-        {id: 'x-rule-xss-result', title: 'xss-result'},
-        {id: 'x-rule-lfi-waf-scores', title: 'lfi-waf-scores'},
-        {id: 'x-rule-lfi-result', title: 'lfi-result'},
-        {id: 'x-rule-rfi-waf-scores', title: 'rfi-waf-scores'},
-        {id: 'x-rule-rfi-result', title: 'rfi-result'},
-        {id: 'x-rule-rce-waf-scores', title: 'rce-waf-scores'},
-        {id: 'x-rule-rce-result', title: 'rce-result'},
-        {id: 'x-polaris-requestid', title: 'Request ID'},
+        {id: 'result', title: 'Result'}
     ];
 
     const createCsvWriter = require('csv-writer').createObjectCsvWriter;
@@ -71,8 +59,7 @@ function appendResult(url, payload, expect, result, score = {}, options) {
             url,
             payload,
             expect,
-            result,
-            ...score,
+            result
         },
     ];
 

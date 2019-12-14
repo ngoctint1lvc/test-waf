@@ -58,11 +58,6 @@ async function test(options, outputPath) {
                 payload: item.value
             })));
 
-            let header = '';
-
-            page.on("response", response => {
-                header = response.headers();
-            });
             await chrome.submit(formInput, options.testLocation.submit);
 
             await page.waitForNavigation({waitUntil: 'load'});
@@ -71,15 +66,6 @@ async function test(options, outputPath) {
                 return document.body.innerHTML;
             });
 
-            let score = {};
-            if (header) {
-                Object.keys(header).forEach(h => {
-                    if (h.startsWith('x-rule') || h.startsWith('x-polaris-requestid')) {
-                        score[h] = header[h];
-                    }
-                })
-            }
-
             if (isBlockedByFirewall(pageHtml)) {
                 console.log(chalk.green("=> ✓ ✓ ✓ Blocked by firewall\n"));
                 isBlocked = true;
@@ -87,7 +73,7 @@ async function test(options, outputPath) {
                 console.log(chalk.red("=> X X X Bypass firewall success\n"));
             }
 
-            utils.appendResult(options.url, payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', score, {
+            utils.appendResult(options.url, payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', {
                 fileName: outputFileName
             });
         } catch (err) {
@@ -121,13 +107,6 @@ async function test(options, outputPath) {
                 payload: item.value
             })));
 
-            let score = [];
-            let header = '';
-
-            page.on("response", response => {
-                header = response.headers();
-            });
-
             await chrome.submit(formInput, options.testLocation.submit);
 
             await page.waitForNavigation({waitUntil: 'load'});
@@ -136,14 +115,6 @@ async function test(options, outputPath) {
                 return document.body.innerHTML;
             });
 
-            if (header) {
-                Object.keys(header).forEach(h => {
-                    if (h.startsWith('x-rule') || h.startsWith('x-polaris-requestid')) {
-                        score[h] = header[h];
-                    }
-                })
-            }
-
             if (isBlockedByFirewall(pageHtml)) {
                 console.log(chalk.red("=> X X X False Positive\n"));
                 isBlocked = true;
@@ -151,7 +122,7 @@ async function test(options, outputPath) {
                 console.log(chalk.green("=> ✓ ✓ ✓ True Positive\n"));
             }
 
-            utils.appendResult(options.url, payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', score, {
+            utils.appendResult(options.url, payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', {
                 fileName: outputFileName
             });
         } catch (err) {
