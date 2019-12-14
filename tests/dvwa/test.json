@@ -1,0 +1,214 @@
+[
+    {
+        "url": "http://localhost/vulnerabilities/exec/",
+        "payloadFile": {
+            "attack": "./payloads/cmdi-attack.txt",
+            "normal": "./payloads/cmdi-normal.txt"
+        },
+        "attackType": "Command injection",
+        "testLocation": {
+            "selector": "input[name=ip]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/sqli/",
+        "payloadFile": {
+            "attack": "./payloads/sqli-attack.txt",
+            "normal": "./payloads/sqli-normal.txt"
+        },
+        "attackType": "Sql injection",
+        "testLocation": {
+            "selector": "input[name=id]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/sqli_blind/",
+        "payloadFile": {
+            "attack": "./payloads/sqli-attack.txt",
+            "normal": "./payloads/sqli-normal.txt"
+        },
+        "attackType": "Sql injection blind",
+        "testLocation": {
+            "selector": "input[name=id]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_r/",
+        "payloadFile": {
+            "attack": "./payloads/xss-attack.txt",
+            "normal": "./payloads/xss-normal.txt"
+        },
+        "attackType": "Xss reflected",
+        "testLocation": {
+            "selector": "input[name=name]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_s/",
+        "payloadFile": {
+            "attack": "./payloads/xss-attack.txt",
+            "normal": "./payloads/xss-normal.txt"
+        },
+        "attackType": "Xss stored",
+        "testLocation": {
+            "selector": "textarea[name=mtxMessage]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": [
+            {
+                "selector": "input[name=txtName]",
+                "value": "something"
+            }
+        ]
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_s/",
+        "payloadFile": {
+            "attack": "./payloads/xss-attack.txt",
+            "normal": "./payloads/xss-normal.txt"
+        },
+        "attackType": "Xss stored",
+        "testLocation": {
+            "selector": "input[name=txtName]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": [
+            {
+                "selector": "textarea[name=mtxMessage]",
+                "value": "some message"
+            }
+        ]
+    },
+    {
+        "url": "http://localhost/vulnerabilities/sqli/",
+        "payloadFile": {
+            "attack": "./payloads/sqli-attack-generic.txt",
+            "normal": ""
+        },
+        "attackType": "Sql injection generic",
+        "testLocation": {
+            "selector": "input[name=id]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/sqli_blind/",
+        "payloadFile": {
+            "attack": "./payloads/sqli-attack-generic.txt",
+            "normal": ""
+        },
+        "attackType": "Sql injection generic",
+        "testLocation": {
+            "selector": "input[name=id]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_r/",
+        "payloadFile": {
+            "attack": "./payloads/xss-attack-generic.txt",
+            "normal": ""
+        },
+        "attackType": "Xss generic",
+        "testLocation": {
+            "selector": "input[name=name]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_s/",
+        "payloadFile": {
+            "attack": "./payloads/xss-attack-generic.txt",
+            "normal": ""
+        },
+        "attackType": "Xss generic",
+        "testLocation": {
+            "selector": "textarea[name=mtxMessage]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": [
+            {
+                "selector": "input[name=txtName]",
+                "value": "something"
+            }
+        ]
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_s/",
+        "payloadFile": {
+            "attack": "./payloads/xss-attack-generic.txt",
+            "normal": ""
+        },
+        "attackType": "Xss generic",
+        "testLocation": {
+            "selector": "input[name=txtName]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": [
+            {
+                "selector": "textarea[name=mtxMessage]",
+                "value": "some message"
+            }
+        ]
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_r/",
+        "payloadFile": {
+            "attack": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
+            "normal": ""
+        },
+        "attackType": "Xss PortSwigger",
+        "testLocation": {
+            "selector": "input[name=name]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": []
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_s/",
+        "payloadFile": {
+            "attack": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
+            "normal": ""
+        },
+        "attackType": "Xss PortSwigger",
+        "testLocation": {
+            "selector": "textarea[name=mtxMessage]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": [
+            {
+                "selector": "input[name=txtName]",
+                "value": "something"
+            }
+        ]
+    },
+    {
+        "url": "http://localhost/vulnerabilities/xss_s/",
+        "payloadFile": {
+            "attack": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
+            "normal": ""
+        },
+        "attackType": "Xss PortSwigger",
+        "testLocation": {
+            "selector": "input[name=txtName]",
+            "submit": "input[type=submit]"
+        },
+        "constValues": [
+            {
+                "selector": "textarea[name=mtxMessage]",
+                "value": "some message"
+            }
+        ]
+    }
+]

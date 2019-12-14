@@ -1,0 +1,24 @@
+192.168.1.1
+::1
+You should change your /etc/passwd file
+/bin/bash is your bash binary file
+Here is an example: ls -l /home/ryan
+cd — Use the "cd" command to go to a directory.
+mkdir & rmdir — Use the mkdir command when you need to create a folder or a directory
+then you can type "mkdir DIY"
+Use "rm -r" to delete just the directory. 
+For example, “touch new.txt”.
+man & --help — To know more about a command and how to use it
+cp — Use the cp command to copy files through the command line
+For example, if we want to rename the file “text” to “new”, we can use “mv text new”
+when you type in “locate -i hello”
+For example, if you want to create a new text file or add to an already made text file, you just need to type in, “echo hello, my name is alok >> new.txt”.
+For example, if you want to edit a file like viz. alsa-base.conf
+Press 'ctrl + d' to return to command prompt.
+The syntax to combine 2 files is cat file1 file2 > newfilename
+Suppose we want to move the file "sample2" to location /home/guru99/Documents. Executing the command
+will create a directory 'Music' under '/tmp' directory
+cat filename | less 
+For this the syntax would be: cat sample | grep -E p\{2}
+We can use command like cat sample|grep "a\+t"
+The syntax for brace expansion is either a sequence or a comma separated list of items inside curly braces "{}". The starting and ending items in a sequence are separated by two periods "..".
