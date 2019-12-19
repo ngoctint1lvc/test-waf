@@ -1,0 +1,133 @@
+192.168.1.1
+::1
+You should change your /etc/passwd file
+/bin/bash is your bash binary file
+Here is an example: ls -l /home/ryan
+cd — Use the "cd" command to go to a directory.
+mkdir & rmdir — Use the mkdir command when you need to create a folder or a directory
+then you can type "mkdir DIY"
+Use "rm -r" to delete just the directory. 
+For example, “touch new.txt”.
+man & --help — To know more about a command and how to use it
+cp — Use the cp command to copy files through the command line
+For example, if we want to rename the file “text” to “new”, we can use “mv text new”
+when you type in “locate -i hello”
+For example, if you want to create a new text file or add to an already made text file, you just need to type in, “echo hello, my name is alok >> new.txt”.
+For example, if you want to edit a file like viz. alsa-base.conf
+Press 'ctrl + d' to return to command prompt.
+The syntax to combine 2 files is cat file1 file2 > newfilename
+Suppose we want to move the file "sample2" to location /home/guru99/Documents. Executing the command
+will create a directory 'Music' under '/tmp' directory
+cat filename | less 
+For this the syntax would be: cat sample | grep -E p\{2}
+We can use command like cat sample|grep "a\+t"
+The syntax for brace expansion is either a sequence or a comma separated list of items inside curly braces "{}". The starting and ending items in a sequence are separated by two periods "..".
+for example 10 < 5 right?
+<>
+I'm a normal user with age < 20, why block me?
+it' not me, it'
+it's Union bank select new
+mysql> source c:\temp\mysqlsampledatabase.sql
+Use the SHOW DATABASES command to list all databases in the current server:  1 mysql> show databases;
+SELECT – show you how to use simple SELECT statement to query the data from a single table.
+ORDER BY – show you how to sort the result set using ORDER BY clause. The custom sort order with the FIELD function will be also covered.
+WHERE – learn how to use the WHERE clause to filter rows based on specified conditions.
+SELECT  DISTINCT – show you how to use the DISTINCT operator in the SELECT statement to eliminate duplicate rows in a result set.
+AND – introduce you to the AND operator to combine Boolean expressions to form a complex condition for filtering data.
+OR– introduce you to the OR operator and show you how to combine the OR operator with the AND operator to filter data.
+IN – show you how to use the IN operator in the WHERE clause to determine if a value matches any value in a list or a subquery.
+BETWEEN – show you how to query data based on a range using BETWEEN operator.
+LIKE  – provide you with technique to query data based on a specific pattern.
+LIMIT – use LIMIT to constrain the number of rows returned by SELECT statement
+IS NULL – test whether a value is NULL or not by using IS NULL operator.
+Section 5. Joining tables
+Table & Column Aliases – introduce you to table and column aliases.
+Joins  – give you an overview of joins supported in MySQL including inner join, left join, and right join.
+INNER JOIN – query rows from a table that has matching rows in another table.
+LEFT JOIN – return all rows from the left table and matching rows from the right table or null if no matching rows found in the right table.
+RIGHT JOIN – return all rows from the right table and matching rows from the left table or null if no matching rows found in the left table.
+CROSS JOIN – make a Cartesian product of rows from multiple tables.
+Self-join – join a table to itself using table alias and connect rows within the same table using inner join and left join.
+Section 6. Grouping data
+GROUP BY – show you how to group rows into groups based on columns or expressions.
+HAVING – filter the groups by a specific condition.
+ROLLUP –  generate multiple grouping sets considering a hierarchy between columns specified in the GROUP BY clause.
+ Section 7. Subqueries
+Subquery – show you how to nest a query (inner query) within another query (outer query) and use the result of the inner query for the outer query.
+Derived table – introduce you to the derived table concept and show you how to use it to simplify complex queries.
+EXISTS – test for the existence of rows.
+Section 8. Common Table Expressions
+Common Table Expression or CTE – explain you the common table expression concept and show you how to use CTE for querying data from tables.
+Recursive CTE –  use the recursive CTE to traverse the hierarchical data.
+Section 9. Set operators
+UNION and UNION ALL – combine two or more result sets of multiple queries into a single result set.
+INTERSECT –  show you a couple of ways to simulate the INTERSECT operator.
+MINUS – explain to you the SQL MINUS operator and show you how to simulate it.
+Section 10. Modifying data in MySQL
+In this section, you will learn how to insert, update, and delete data from tables using various MySQL statements.
+INSERT – use various forms of the INSERT statement to insert data into a table.
+INSERT Multiple Rows – insert multiple rows into a table.
+INSERT INTO SELECT – insert data into a table from the result set of a query.
+INSERT IGNORE  – explain you the INSERT IGNORE statement that inserts rows into a table and ignores rows that cause errors.
+UPDATE – learn how to use UPDATE statement and its options to update data in database tables.
+UPDATE JOIN – show you how to perform cross-table update using UPDATE JOIN statement with INNER JOIN and LEFT JOIN.
+DELETE – show you how to use the DELETE statement to delete rows from one or more tables.
+ON DELETE CASCADE – learn how to use ON DELETE CASCADE referential action for a foreign key to delete data from a child table automatically when you delete data from a parent table.
+DELETE JOIN – show you how to delete data from multiple tables.
+REPLACE – learn how to insert or update data depends on whether data exists in the table or not.
+Prepared Statement – show you how to use the prepared statement to execute a query.
+Section 11. MySQL transaction
+Transaction – learn about MySQL transactions, and how to use COMMIT and ROLLBACK to manage transactions in MySQL.
+Table locking – learn how to use MySQL locking for cooperating table access between sessions.
+Section 12. Managing MySQL databases and tables
+This section shows you how to manage the most important database objects in MySQL including database and tables.
+Selecting a MySQL database – show you how to use the USE statement to select a MySQL database via the mysql program and MySQL Workbench.
+Managing databases – learn various statements to manage MySQL databases including creating a new database, removing an existing database, selecting a database, and listing all databases.
+CREATE DATABASE – show you how to create a new database in MySQL Server.
+DROP DATABASE – learn how to delete an existing database.
+MySQL storage engines– it is essential to understand the features of each storage engine so that you can use them effectively to maximize the performance of your databases.
+CREATE TABLE – show you how to create new tables in a database using CREATE TABLE statement.
+MySQL sequence – show you how to use a sequence to generate unique numbers automatically for the primary key column of a table.
+ALTER TABLE – learn how to use the ALTER TABLE statement to change the structure of a table.
+Renaming table –  show you how to rename a table using RENAME TABLE statement.
+Removing a column from a table – show you how to use the ALTER TABLE DROP COLUMN statement to remove one or more columns from a table.
+Adding a new column to a table – show you how to add one or more columns to an existing table using ALTER TABLE ADD COLUMN statement.
+DROP TABLE – show you how to remove existing tables using DROP TABLE statement.
+Temporary tables – discuss MySQL temporary table and show you how to manage temporary tables.
+TRUNCATE TABLE – show you how to use the TRUNCATE TABLE statement to delete all data in a table fast.
+Generated columns – learn how to use the MySQL generated columns to store data computed from an expression or other columns.
+Section 13. MySQL data types
+MySQL data types – show you various data types in MySQL so that you can apply them effectively in designing database tables.
+INT – show you how to use integer data type.
+DECIMAL – show you how to use DECIMAL datatype to store exact values in decimal format.
+BIT – introduce you BIT datatype and how to store bit values in MySQL.
+BOOLEAN – explain to you how MySQL handles Boolean values by using TINYINT(1) internally.
+CHAR – a guide to CHAR data type for storing the fixed-length string.
+VARCHAR – give you the essential guide to VARCHAR datatype.
+TEXT – show you how to store text data using TEXT datatype.
+DATE – introduce you to the DATE datatype and show you some date functions to handle the date data effectively.
+TIME – walk you through the features of TIME datatype and show you how to use some useful temporal functions to handle time data.
+DATETIME – introduce you to the DATETIME datatype and some useful functions to manipulate DATETIME values.
+TIMESTAMP – introduce you to TIMESTAMP and its features called automatic initialization and automatic update that allows you to define auto-initialized and auto-updated columns for a table.
+JSON – show you how to use JSON data type to store JSON documents.
+ENUM – learn how to use ENUM datatype correctly to store enumeration values.
+Section 14. MySQL constraints
+NOT NULL constraint – introduce you to the NOT NULL constraint and show you how to declare a  NOT NULL column or add a NOT NULL constraint to an existing column.
+Primary key constraint  – guide you on how to use the primary key constraint to create the primary key for a table.
+Foreign key constraint  – introduce you to the foreign key and show you step by step how to create and drop foreign keys.
+Disable foreign key checks – learn how to disable the foreign key checks.
+UNIQUE constraint – show you how to use UNIQUE constraint to enforce the uniqueness of values in a column or a group of columns in a table.
+CHECK constraint – learn how to create CHECK constraints to ensure data integrity.
+CHECK constraint emulation  – if you use MySQL 8.0.15 or earlier version, you can emulate CHECK constraints using views or triggers.
+Section 15. MySQL globalization
+Character Set – discuss character set and show you step by step how to perform various operations on character sets.
+Collation – discuss collation and show you how to set character set and collations for the MySQL server, database, tables, and columns.
+Section 16. MySQL import & export
+Import CSV File Into MySQL Table – show you how to use LOAD DATA INFILE statement to import CSV file into a MySQL table.
+Export MySQL Table to CSV –  learn various techniques of how to export MySQL table to a CSV file format.
+Section 17. Advanced techniques
+Natural sorting – walk you through various natural sorting techniques in MySQL using the ORDER BY clause.
+MySQL SELECT
+Summary: in this tutorial, you will learn how to use the basic form of the MySQLSELECTstatement to query data from a table.
+The following example uses the SELECT statement to get the first name, last name, and job title of employees: SELECT      lastname,      firstname,      jobtitle FROM     employees;
+Or you just use the asterisk (*) shorthand as shown in the following query:  1 2 SELECT *  FROM employees;

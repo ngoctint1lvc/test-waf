@@ -2,7 +2,7 @@ const lineByLine = require('n-readlines');
 const fs = require('fs');
 const path = require('path');
 
-const removeFilesInFolder = function (directory) {
+function removeFilesInFolder(directory) {
     fs.readdir(directory, (err, files) => {
         if (err) throw err;
 

@@ -27,16 +27,22 @@ async function testAll() {
 
 /**
  *
- * @param {{url, payloadFile: {attack, normal}, attackType, testLocation: {selector, submit}, constValues: Array<{selector,value}> }} options
+ * @param {{url, payloadFile, type, isAttack: boolean, testLocation: {selector, submit}, constValues: Array<{selector,value}> }} options
  */
 async function test(options, outputPath) {
-    console.log(`----------- [${options.attackType}] Begin of attack test cases -----------`);
-    let fileLocation = require.resolve(options.payloadFile.attack);
+    if (options.isAttack) {
+        console.log(`----------- [${options.type}] Begin of attack test cases -----------`);
+    }
+    else {
+        console.log(`----------- [${options.type}] Begin of normal test cases -----------`);
+    }
+    
+    let fileLocation = require.resolve(options.payloadFile);
     let payloads = utils.readTxtFile(fileLocation);
 
     const filename = 'output.csv';
 
-    let outputFileName = `${outputPath}${options.attackType}-${filename}`;
+    let outputFileName = `${outputPath}${options.type}-${filename}`;
 
     for (let payload of payloads) {
         console.log("Testing", payload);
@@ -67,69 +73,39 @@ async function test(options, outputPath) {
             });
 
             if (isBlockedByFirewall(pageHtml)) {
-                console.log(chalk.green("=> ✓ ✓ ✓ Blocked by firewall\n"));
+                if (options.isAttack)
+                    console.log(chalk.green("=> ✓ ✓ ✓ Blocked by firewall\n"));
+                else
+                    console.log(chalk.red("=> X X X False Positive\n"));
                 isBlocked = true;
             } else {
-                console.log(chalk.red("=> X X X Bypass firewall success\n"));
+                if (options.isAttack)
+                    console.log(chalk.red("=> X X X Bypass firewall success\n"));
+                else
+                    console.log(chalk.green("=> ✓ ✓ ✓ True Positive\n"));
             }
 
-            utils.appendResult(options.url, payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', {
-                fileName: outputFileName
-            });
+            if (options.isAttack) {
+                utils.appendResult(options.url, payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', {
+                    fileName: outputFileName
+                });
+            }
+            else {
+                utils.appendResult(options.url, payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', {
+                    fileName: outputFileName
+                });
+            }
         } catch (err) {
             console.error(err);
         }
     }
-    console.log(`----------- [${options.attackType}] End of attack test cases -----------`);
 
-    if (!options.payloadFile.normal) return;
-    console.log(`----------- [${options.attackType}] Begin of normal test cases -----------`);
-
-    fileLocation = require.resolve(options.payloadFile.normal);
-    payloads = utils.readTxtFile(fileLocation);
-
-    for (let payload of payloads) {
-        console.log("Testing", payload);
-
-        let isBlocked = false;
-        try {
-            await chrome.clearSiteData();
-            await login();
-            await chrome.goTo(DVWA_URL + options.url);
-
-            let formInput = [
-                {
-                    selector: options.testLocation.selector,
-                    payload: payload
-                }
-            ].concat(options.constValues.map(item => ({
-                selector: item.selector,
-                payload: item.value
-            })));
-
-            await chrome.submit(formInput, options.testLocation.submit);
-
-            await page.waitForNavigation({waitUntil: 'load'});
-
-            let pageHtml = await page.evaluate(() => {
-                return document.body.innerHTML;
-            });
-
-            if (isBlockedByFirewall(pageHtml)) {
-                console.log(chalk.red("=> X X X False Positive\n"));
-                isBlocked = true;
-            } else {
-                console.log(chalk.green("=> ✓ ✓ ✓ True Positive\n"));
-            }
-
-            utils.appendResult(options.url, payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', {
-                fileName: outputFileName
-            });
-        } catch (err) {
-            console.error(err);
-        }
+    if (options.isAttack) {
+        console.log(`----------- [${options.type}] End of attack test cases -----------`);
     }
-    console.log(`----------- [${options.attackType}] End of normal test cases -----------`);
+    else {
+        console.log(`----------- [${options.type}] End of normal test cases -----------`);
+    }
 }
 
 async function reset(payload) {
