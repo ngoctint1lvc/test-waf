@@ -1,0 +1,44 @@
+[
+    {
+        "payloadFile": "../data/http-csic/anomalousTrafficTest.txt",
+        "type": "CSIC anomalous traffic test",
+        "delim": "",
+        "isAttack": true
+    },
+    {
+        "payloadFile": "../data/http-csic/normalTrafficTest.txt",
+        "type": "CSIC normal traffic test",
+        "delim": "",
+        "isAttack": false
+    },
+    {
+        "payloadFile": "../data/http-csic/normalTrafficTraining.txt",
+        "type": "CSIC normal traffic training",
+        "delim": "",
+        "isAttack": false
+    },
+    {
+        "payloadFile": "../data/ecml_pkdd/dataset_ecml_pkdd_train_test/xml_test.txt",
+        "type": "Ecml pkdd test",
+        "delim": "End - Id: \\d+",
+        "isAttack": true
+    },
+    {
+        "payloadFile": "../data/ecml_pkdd/dataset_ecml_pkdd_train_test/xml_train.txt",
+        "type": "Ecml pkdd train",
+        "delim": "End - Id: \\d+",
+        "isAttack": true
+    },
+    {
+        "payloadFile": "../data/polaris/polaris-attack.txt",
+        "type": "Polaris CVE rule attack",
+        "delim": "",
+        "isAttack": true
+    },
+    {
+        "payloadFile": "../data/polaris/polaris-normal.txt",
+        "type": "Polaris CVE rule normal",
+        "delim": "",
+        "isAttack": false
+    }
+]

@@ -1,48 +1,38 @@
-const utils = require('../../utils.js');
-const fs = require('fs');
-let chrome = require('../../chrome.js');
+const utils = require('./utils.js');
+let chrome = require('./chrome.js');
 const chalk = require('chalk');
-
-const DVWA_URL = process.env.DVWA_URL;
-
-const LOGIN_URL = `${DVWA_URL}/login.php`;
-
-async function testAll() {
-    let testData = JSON.parse(fs.readFileSync(__dirname + '/test.json').toString());
-    const outputPath = __dirname + '/outputs/';
-
-    // Create output folder if not exist
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath);
-    }
-
-    // Remove files if exist
-    utils.removeFilesInFolder(outputPath);
-
-    for (let item of testData) {
-        // TODO: Add performed time to output folder, each perform in one folder
-        await test(item, outputPath);
-    }
-}
+const path = require('path');
+const fs = require('fs');
 
 /**
  *
  * @param {{url, payloadFile, type, isAttack: boolean, testLocation: {selector, submit}, constValues: Array<{selector,value}> }} options
  */
-async function test(options, outputPath) {
-    if (options.isAttack) {
-        console.log(`----------- [${options.type}] Begin of attack test cases -----------`);
-    }
-    else {
-        console.log(`----------- [${options.type}] Begin of normal test cases -----------`);
-    }
-    
-    let fileLocation = require.resolve(options.payloadFile);
-    let payloads = utils.readTxtFile(fileLocation);
+async function test(options, manifestPath, outputPath) {
+    let payloadFilePath = utils.getAbsolutePath(options.payloadFile, manifestPath);
+    let payloads = utils.readTxtFile(payloadFilePath);
 
-    const filename = 'output.csv';
+    let outputFilePath = path.join(outputPath, `${options.type}-output.csv`);
+    utils.removeFileIfExists(outputFilePath);
 
-    let outputFileName = `${outputPath}${options.type}-${filename}`;
+    const headers = [
+        'URL',
+        'Payload',
+        'Expect',
+        'Result',
+        // 'tag-scores',
+        // 'sqli-waf-scores',
+        // 'sqli-result',
+        // 'xss-waf-scores',
+        // 'xss-result',
+        // 'lfi-waf-scores',
+        // 'lfi-result',
+        // 'rfi-waf-scores',
+        // 'rfi-result',
+        // 'rce-waf-scores',
+        // 'rce-result',
+        // 'Request ID',
+    ];
 
     for (let payload of payloads) {
         console.log("Testing", payload);
@@ -52,7 +42,7 @@ async function test(options, outputPath) {
             await chrome.clearSiteData();
             await login();
             await setSecurityLevel("low");
-            await chrome.goTo(DVWA_URL + options.url);
+            await chrome.goTo(_argv.url + options.url);
 
             let formInput = [
                 {
@@ -86,25 +76,24 @@ async function test(options, outputPath) {
             }
 
             if (options.isAttack) {
-                utils.appendResult(options.url, payload, 'BLOCKED', isBlocked ? 'SUCCESS' : 'FAILED', {
-                    fileName: outputFileName
-                });
+                utils.appendCSV(outputFilePath, headers, [
+                    options.url,
+                    payload,
+                    'BLOCKED',
+                    isBlocked ? 'SUCCESS': 'FAILED'
+                ]);
             }
             else {
-                utils.appendResult(options.url, payload, 'PASS', isBlocked ? 'FAILED' : 'SUCCESS', {
-                    fileName: outputFileName
-                });
+                utils.appendCSV(outputFilePath, headers, [
+                    options.url,
+                    payload,
+                    'PASS',
+                    isBlocked ? 'FAILED' : 'SUCCESS'
+                ]);
             }
         } catch (err) {
             console.error(err);
         }
-    }
-
-    if (options.isAttack) {
-        console.log(`----------- [${options.type}] End of attack test cases -----------`);
-    }
-    else {
-        console.log(`----------- [${options.type}] End of normal test cases -----------`);
     }
 }
 
@@ -126,7 +115,7 @@ async function setSecurityLevel(level = 'low') {
 }
 
 async function login(username = 'admin', password = 'password') {
-    await chrome.goTo(LOGIN_URL);
+    await chrome.goTo(_argv.url);
 
     await chrome.submit([
         {selector: '.loginInput[type=text]', payload: username},
@@ -137,13 +126,12 @@ async function login(username = 'admin', password = 'password') {
 }
 
 function isBlockedByFirewall(html) {
-    return html.indexOf(process.env.BLOCK_STRING) >= 0;
+    return html.indexOf(_argv.blockstring) >= 0;
 }
 
 module.exports = {
     setSecurityLevel,
     login,
     test,
-    testAll,
     reset
 };

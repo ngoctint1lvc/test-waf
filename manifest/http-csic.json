@@ -1,0 +1,20 @@
+[
+    {
+        "payloadFile": "../data/http-csic/anomalousTrafficTest.txt",
+        "type": "CSIC anomalous traffic test",
+        "delim": "",
+        "isAttack": true
+    },
+    {
+        "payloadFile": "../data/http-csic/normalTrafficTest.txt",
+        "type": "CSIC normal traffic test",
+        "delim": "",
+        "isAttack": false
+    },
+    {
+        "payloadFile": "../data/http-csic/normalTrafficTraining.txt",
+        "type": "CSIC normal traffic training",
+        "delim": "",
+        "isAttack": false
+    }
+]

@@ -1,7 +1,7 @@
 [
     {
         "url": "/vulnerabilities/exec/",
-        "payloadFile": "./payloads/cmdi-attack.txt",
+        "payloadFile": "../data/dvwa/cmdi-attack.txt",
         "type": "Command injection",
         "testLocation": {
             "selector": "input[name=ip]",
@@ -12,7 +12,7 @@
     },
     {
         "url": "/vulnerabilities/sqli/",
-        "payloadFile": "./payloads/sqli-attack.txt",
+        "payloadFile": "../data/dvwa/sqli-attack.txt",
         "type": "Sql injection",
         "testLocation": {
             "selector": "input[name=id]",
@@ -23,7 +23,7 @@
     },
     {
         "url": "/vulnerabilities/sqli_blind/",
-        "payloadFile": "./payloads/sqli-attack.txt",
+        "payloadFile": "../data/dvwa/sqli-attack.txt",
         "type": "Sql injection blind",
         "testLocation": {
             "selector": "input[name=id]",
@@ -34,7 +34,7 @@
     },
     {
         "url": "/vulnerabilities/xss_r/",
-        "payloadFile": "./payloads/xss-attack.txt",
+        "payloadFile": "../data/dvwa/xss-attack.txt",
         "type": "Xss reflected",
         "testLocation": {
             "selector": "input[name=name]",
@@ -45,7 +45,7 @@
     },
     {
         "url": "/vulnerabilities/xss_s/",
-        "payloadFile": "./payloads/xss-attack.txt",
+        "payloadFile": "../data/dvwa/xss-attack.txt",
         "type": "Xss stored",
         "testLocation": {
             "selector": "textarea[name=mtxMessage]",
@@ -61,7 +61,7 @@
     },
     {
         "url": "/vulnerabilities/xss_s/",
-        "payloadFile": "./payloads/xss-attack.txt",
+        "payloadFile": "../data/dvwa/xss-attack.txt",
         "type": "Xss stored",
         "testLocation": {
             "selector": "input[name=txtName]",
@@ -77,7 +77,7 @@
     },
     {
         "url": "/vulnerabilities/sqli/",
-        "payloadFile": "./payloads/sqli-attack-generic.txt",
+        "payloadFile": "../data/dvwa/sqli-attack-generic.txt",
         "type": "Sql injection generic",
         "testLocation": {
             "selector": "input[name=id]",
@@ -88,7 +88,7 @@
     },
     {
         "url": "/vulnerabilities/sqli_blind/",
-        "payloadFile": "./payloads/sqli-attack-generic.txt",
+        "payloadFile": "../data/dvwa/sqli-attack-generic.txt",
         "type": "Sql injection generic",
         "testLocation": {
             "selector": "input[name=id]",
@@ -99,7 +99,7 @@
     },
     {
         "url": "/vulnerabilities/xss_r/",
-        "payloadFile": "./payloads/xss-attack-generic.txt",
+        "payloadFile": "../data/dvwa/xss-attack-generic.txt",
         "type": "Xss generic",
         "testLocation": {
             "selector": "input[name=name]",
@@ -110,7 +110,7 @@
     },
     {
         "url": "/vulnerabilities/xss_s/",
-        "payloadFile": "./payloads/xss-attack-generic.txt",
+        "payloadFile": "../data/dvwa/xss-attack-generic.txt",
         "type": "Xss generic",
         "testLocation": {
             "selector": "textarea[name=mtxMessage]",
@@ -126,7 +126,7 @@
     },
     {
         "url": "/vulnerabilities/xss_s/",
-        "payloadFile": "./payloads/xss-attack-generic.txt",
+        "payloadFile": "../data/dvwa/xss-attack-generic.txt",
         "type": "Xss generic",
         "testLocation": {
             "selector": "input[name=txtName]",
@@ -142,7 +142,7 @@
     },
     {
         "url": "/vulnerabilities/xss_r/",
-        "payloadFile": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
+        "payloadFile": "../data/dvwa/XSS-Cheat-Sheet-PortSwigger.txt",
         "type": "Xss PortSwigger",
         "testLocation": {
             "selector": "input[name=name]",
@@ -153,7 +153,7 @@
     },
     {
         "url": "/vulnerabilities/xss_s/",
-        "payloadFile": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
+        "payloadFile": "../data/dvwa/XSS-Cheat-Sheet-PortSwigger.txt",
         "type": "Xss PortSwigger",
         "testLocation": {
             "selector": "textarea[name=mtxMessage]",
@@ -169,7 +169,7 @@
     },
     {
         "url": "/vulnerabilities/exec/",
-        "payloadFile": "./payloads/normal.txt",
+        "payloadFile": "../data/dvwa/normal.txt",
         "type": "Normal",
         "testLocation": {
             "selector": "input[name=ip]",
@@ -180,7 +180,7 @@
     },
     {
         "url": "/vulnerabilities/xss_s/",
-        "payloadFile": "./payloads/XSS-Cheat-Sheet-PortSwigger.txt",
+        "payloadFile": "../data/dvwa/XSS-Cheat-Sheet-PortSwigger.txt",
         "type": "Xss PortSwigger",
         "testLocation": {
             "selector": "input[name=txtName]",

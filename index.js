@@ -10,12 +10,12 @@ console.error = (...args) => {
 
 // using to reload after change without restart chrome browser (using in REPL console)
 function reload() {
-    delete require.cache[require.resolve('./chrome.js')];
-    delete require.cache[require.resolve('./tests/dvwa/script.js')];
-    delete require.cache[require.resolve('./utils.js')];
-    chrome = require('./chrome.js');
-    dvwa = require('./tests/dvwa/script.js');
+    delete require.cache[require.resolve('./modules/chrome.js')];
+    delete require.cache[require.resolve('./modules/dvwa.js')];
+    delete require.cache[require.resolve('./modules/utils.js')];
+    chrome = require('./modules/chrome.js');
+    dvwa = require('./modules/dvwa.js');
 }
 
-let chrome = require('./chrome.js');
-let dvwa = require('./tests/dvwa/script.js');
+let chrome = require('./modules/chrome.js');
+let dvwa = require('./modules/dvwa.js');

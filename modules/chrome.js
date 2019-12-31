@@ -1,9 +1,8 @@
 const puppeteer = require('puppeteer');
-const isHeadless = process.env.HEADLESS === "true";
 
 async function openBrowser() {
-    console.log(`Running test with headless is ${isHeadless ? 'on' : 'off'}`);
-    global.browser = await puppeteer.launch({ headless: isHeadless });
+    console.log(`Running test with headless is ${_argv.headless ? 'on' : 'off'}`);
+    global.browser = await puppeteer.launch({ headless: _argv.headless });
     global.page = await browser.newPage();
 
     page.on('dialog', async dialog => {
@@ -11,6 +10,10 @@ async function openBrowser() {
             dialog.dismiss();
         }, 250);
     });
+}
+
+async function closeBrowser() {
+    await browser.close();
 }
 
 /**
@@ -34,7 +37,7 @@ async function isBlocked() {
         return document.body.innerHTML;
     });
 
-    return pageHtml.indexOf(process.env.BLOCK_STRING) >= 0;
+    return pageHtml.indexOf(_argv.blockstring) >= 0;
 }
 
 async function clearSiteData() {
@@ -53,5 +56,6 @@ module.exports = {
     goTo,
     clearSiteData,
     openBrowser,
-    isBlocked
+    isBlocked,
+    closeBrowser
 }

@@ -2,9 +2,12 @@
   "name": "test-waf",
   "version": "1.0.0",
   "description": "Auto test firewall",
-  "main": "runtest.js",
+  "main": "./bin/index.js",
   "scripts": {
-    "start": "node runtest.js"
+    "start": "node waf-test.js"
+  },
+  "bin": {
+    "waf-test": "./bin/index.js"
   },
   "author": "Tran Ngoc Tin",
   "license": "MIT",
@@ -14,6 +17,7 @@
     "dotenv": "^8.2.0",
     "n-readlines": "^1.0.0",
     "node-fetch": "^2.6.0",
-    "puppeteer": "^1.19.0"
+    "puppeteer": "^1.19.0",
+    "yargs": "^15.0.2"
   }
 }

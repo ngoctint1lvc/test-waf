@@ -1,0 +1,14 @@
+[
+    {
+        "payloadFile": "../data/polaris/polaris-attack.txt",
+        "type": "Polaris CVE rule attack",
+        "delim": "",
+        "isAttack": true
+    },
+    {
+        "payloadFile": "../data/polaris/polaris-normal.txt",
+        "type": "Polaris CVE rule normal",
+        "delim": "",
+        "isAttack": false
+    }
+]
