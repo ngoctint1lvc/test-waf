@@ -1,13 +1,13 @@
 {
-  "name": "test-waf",
+  "name": "waf-test",
   "version": "1.0.0",
-  "description": "Auto test firewall",
-  "main": "./bin/index.js",
+  "description": "Web security testing tool",
+  "main": "./bin/waf-test",
   "scripts": {
     "start": "node waf-test.js"
   },
   "bin": {
-    "waf-test": "./bin/index.js"
+    "waf-test": "./bin/waf-test"
   },
   "author": "Tran Ngoc Tin",
   "license": "MIT",

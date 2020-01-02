@@ -18,13 +18,13 @@
         "isAttack": false
     },
     {
-        "payloadFile": "../data/ecml_pkdd/dataset_ecml_pkdd_train_test/xml_test.txt",
+        "payloadFile": "../data/ecml-pkdd/xml_test.txt",
         "type": "Ecml pkdd test",
         "delim": "End - Id: \\d+",
         "isAttack": true
     },
     {
-        "payloadFile": "../data/ecml_pkdd/dataset_ecml_pkdd_train_test/xml_train.txt",
+        "payloadFile": "../data/ecml-pkdd/xml_train.txt",
         "type": "Ecml pkdd train",
         "delim": "End - Id: \\d+",
         "isAttack": true
